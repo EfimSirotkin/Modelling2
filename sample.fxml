@@ -1,8 +1,236 @@
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<HBox fx:controller="sample.Controller"
+      xmlns:fx="http://javafx.com/fxml" alignment="center">
+    <VBox>
+        <HBox>
+            <VBox>
+
+                <Text text="Равномерное распределение: ">
+                    <font>
+                        <Font name="Verdana Bold Italic" size="20"></Font>
+                    </font>
+                </Text>
+                <HBox>
+                    <Text text="Альфа: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <TextField fx:id="uniformStartField">
+
+                    </TextField>
+                </HBox>
+
+                <HBox>
+                    <Text text="Бета: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <TextField fx:id="uniformEndField">
+
+                    </TextField>
+                </HBox>
+            </VBox>
+            <BarChart fx:id="UniformDistributionHistogram">
+                <xAxis>
+                    <CategoryAxis label="Интервалы значений" side="BOTTOM" fx:id="uniformXAxis"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Частоты значений" side="LEFT" fx:id="uniformYAxis"/>
+                </yAxis>
+            </BarChart>
+        </HBox>
+
+
+        <HBox>
+            <VBox>
+
+                <Text text="Гауссово распределение: ">
+                    <font>
+                        <Font name="Verdana Bold Italic" size="20"></Font>
+                    </font>
+                </Text>
+                <HBox>
+                    <Text text="Матожидание: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <TextField fx:id="gaussianMathExpectationField">
+
+                    </TextField>
+                </HBox>
+
+                <HBox>
+                    <Text text="СКО: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <TextField fx:id="gaussianMeanSquareField">
+
+                    </TextField>
+                </HBox>
+            </VBox>
+            <BarChart fx:id="GaussianDistributionHistogram">
+                <xAxis>
+                    <CategoryAxis label="Интервалы значений" side="BOTTOM" fx:id="gaussianXAxis"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Частоты значений" side="LEFT" fx:id="gaussianYAxis"/>
+                </yAxis>
+            </BarChart>
+        </HBox>
+
+
+        <HBox>
+            <VBox>
+
+                <Text text="Экспоненциальное распределение: ">
+                    <font>
+                        <Font name="Verdana Bold Italic" size="20"></Font>
+                    </font>
+                </Text>
+                <HBox>
+                    <Text text="Лямбда: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <TextField fx:id="exponentialLambdaField">
+
+                    </TextField>
+                </HBox>
+
+            </VBox>
+            <BarChart fx:id="ExponentialDistributionHistogram">
+                <xAxis>
+                    <CategoryAxis label="Интервалы значений" side="BOTTOM" fx:id="exponentialXAxis"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Частоты значений" side="LEFT" fx:id="exponentialYAxis"/>
+                </yAxis>
+            </BarChart>
+        </HBox>
+    </VBox>
+
+
+
+
+
+    <VBox>
+        <HBox>
+            <VBox>
+
+                <Text text="Гамма-распределение: ">
+                    <font>
+                        <Font name="Verdana Bold Italic" size="20"></Font>
+                    </font>
+                </Text>
+                <HBox>
+                    <Text text="Лямбда: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <TextField fx:id="gammaLambdaField">
+
+                    </TextField>
+                </HBox>
+
+                <HBox>
+                    <Text text="Тетта: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <TextField fx:id="gammaTettaField">
+
+                    </TextField>
+                </HBox>
+            </VBox>
+            <BarChart fx:id="GammaDistributionHistogram">
+                <xAxis>
+                    <CategoryAxis label="Интервалы значений" side="BOTTOM" fx:id="gammamXAxis"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Частоты значений" side="LEFT" fx:id="gammaYAxis"/>
+                </yAxis>
+            </BarChart>
+        </HBox>
+
+
+        <HBox>
+            <VBox>
+
+                <Text text="Треугольное распределение: ">
+                    <font>
+                        <Font name="Verdana Bold Italic" size="20"></Font>
+                    </font>
+                </Text>
+                <HBox>
+                    <Text text="а: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <TextField fx:id="triangleAField">
+
+                    </TextField>
+                </HBox>
+
+                <HBox>
+                    <Text text="b: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <TextField fx:id="triangleBField">
+
+                    </TextField>
+                </HBox>
+            </VBox>
+            <BarChart fx:id="TriangleDistributionHistogram">
+                <xAxis>
+                    <CategoryAxis label="Интервалы значений" side="BOTTOM" fx:id="triangleXAxis"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Частоты значений" side="LEFT" fx:id="triangleYAxis"/>
+                </yAxis>
+            </BarChart>
+        </HBox>
+
+
+        <HBox>
+            <VBox>
+
+                <Text text="Симпсона распределение: ">
+                    <font>
+                        <Font name="Verdana Bold Italic" size="20"></Font>
+                    </font>
+                </Text>
+
+            </VBox>
+            <BarChart fx:id="SimpsonDistributionHistogram">
+                <xAxis>
+                    <CategoryAxis label="Интервалы значений" side="BOTTOM" fx:id="simpsonXAxis"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Частоты значений" side="LEFT" fx:id="simpsonYAxis"/>
+                </yAxis>
+            </BarChart>
+        </HBox>
+    </VBox>
+</HBox>
