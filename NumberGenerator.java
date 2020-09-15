@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class NumberGenerator {
 
 
-    public static int n = 100;
+    public static int n = 100000;
     public static ArrayList<Double> randomNumbers;
     public static ArrayList<Double> generatedNumbers;
 
@@ -30,8 +30,10 @@ public class NumberGenerator {
 
     public void generateUniformDistribution(double start, double end) {
         generatedNumbers.clear();
-        for (int i = 0; i < n; i++)
-            generatedNumbers.add(start + (end - start) * randomNumbers.get(i));
+        for (int i = 0; i < n; i++) {
+            double randomNumber = 0.0 + Math.random()* 1.0;
+            generatedNumbers.add(start + (end - start) * randomNumber);
+        }
 
         System.out.println("Uniform: " + generatedNumbers);
     }
@@ -48,7 +50,8 @@ public class NumberGenerator {
         for (int i = 0; i < n; i++) {
             double sum = 0;
             for (int j = 1; j < accuracy; ++j) {
-                sum = sum + randomNumbers.get(tempCounter % n);
+                double randomNumber = 0.0 + Math.random() * 1.0;
+                sum = sum + randomNumber;
                 tempCounter++;
             }
             generatedNumbers.add(i, Math.abs(mathExpectation + meanSquare * Math.sqrt(2) * (sum - 3)));
@@ -59,7 +62,8 @@ public class NumberGenerator {
     public void generateExponentialDistribution(double lambda) {
         generatedNumbers.clear();
         for (int i = 0; i < n; ++i) {
-            generatedNumbers.add(i, (-1 / lambda) * Math.log(randomNumbers.get(i)));
+            double randomNumber = 0.0 + Math.random() * 1.0;
+            generatedNumbers.add(i, (-1 / lambda) * Math.log(randomNumber));
         }
     }
 
@@ -70,7 +74,8 @@ public class NumberGenerator {
         for (int i = 0; i < n; ++i) {
             double randMultiplication = 1;
             for (int j = 0; j <= tetta; ++j) {
-                randMultiplication *= randomNumbers.get((int) (tempCounter % n));
+                double randomNumber = 0.0 + Math.random() * 1.0;
+                randMultiplication *= randomNumber;
                 tempCounter++;
             }
             generatedNumbers.add(i, (-1 / lambda) * Math.log(randMultiplication));
@@ -80,14 +85,18 @@ public class NumberGenerator {
     public void generateTriangleDistribution(double a, double b) {
         generatedNumbers.clear();
         for (int i = 0; i < n; ++i) {
-            generatedNumbers.add(i, a + (b - a) * Math.min(randomNumbers.get((i * 2) % n), randomNumbers.get((i * 2 + 1) % n)));
+            double firstNumber = 0.0 + Math.random() * 1.0;
+            double secondNumber = 0.0 + Math.random() * 1.0;
+            generatedNumbers.add(i, a + (b - a) * Math.min(firstNumber, secondNumber));
         }
     }
 
     public void generateSimpsonDistribution() {
         generatedNumbers.clear();
         for (int i = 0; i < n; ++i) {
-            generatedNumbers.add(i, randomNumbers.get((i * 2) % n) + randomNumbers.get((i * 2 + 1) % n));
+            double firstNumber = 0.0 + Math.random() * 1.0;
+            double secondNumber = 0.0 + Math.random() * 1.0;
+            generatedNumbers.add(i, firstNumber + secondNumber);
         }
     }
 
@@ -103,7 +112,7 @@ public class NumberGenerator {
         double sum = 0;
         for (Double number : randomNumbers)
             sum += number;
-        mathExpectation = getScaledValue(sum / n, 4);
+        mathExpectation = getMaxScaledValue(sum / n, 4);
     }
 
     public void calсulateDispersion() {
@@ -111,17 +120,24 @@ public class NumberGenerator {
         for (Double number : randomNumbers)
             sum += Math.pow(number - mathExpectation, 2);
 
-        seqDispersion = getScaledValue(sum / n, 4);
+        seqDispersion = getMaxScaledValue(sum / n, 4);
     }
 
 
     public void calculateDeviation() {
-        seqDeviation = getScaledValue(Math.sqrt(seqDispersion), 4);
+        seqDeviation = getMaxScaledValue(Math.sqrt(seqDispersion), 4);
     }
 
-    public static double getScaledValue(Double value, int scale) {
+    public static double getMinScaledValue(Double value, int scale)
+    {
         BigDecimal bigDecimal = new BigDecimal(value);
-        bigDecimal = bigDecimal.setScale(scale, RoundingMode.HALF_UP);
+        bigDecimal = bigDecimal.setScale(scale, RoundingMode.DOWN);
+        return bigDecimal.doubleValue();
+    }
+
+    public static double getMaxScaledValue(Double value, int scale) {
+        BigDecimal bigDecimal = new BigDecimal(value);
+        bigDecimal = bigDecimal.setScale(scale, RoundingMode.UP);
         return bigDecimal.doubleValue();
     }
 

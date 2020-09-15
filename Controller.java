@@ -107,8 +107,8 @@ public class Controller implements Initializable {
         double minValue = Collections.min(sourceList);
         double maxValue = Collections.max(sourceList);
 
-        double startInterval = NumberGenerator.getScaledValue(minValue,1);
-        double endInterval =  NumberGenerator.getScaledValue(maxValue, 1);
+        double startInterval = NumberGenerator.getMinScaledValue(minValue,1);
+        double endInterval =  NumberGenerator.getMaxScaledValue(maxValue, 1);
 
         double step = (maxValue - minValue) / HistogramDataRetriever.k;
 
@@ -118,7 +118,7 @@ public class Controller implements Initializable {
         XYChart.Series<String, Number> tempSeries = new XYChart.Series<>();
 
         for(int i = 0; i < listSize; i++){
-            tempSeries.getData().add(new XYChart.Data<>(String.valueOf(NumberGenerator.getScaledValue(startInterval,3)), sourceFrequencyList.get(i)));
+            tempSeries.getData().add(new XYChart.Data<>(String.valueOf(NumberGenerator.getMaxScaledValue(startInterval,3)), sourceFrequencyList.get(i)));
             startInterval+= step;
 
         }

@@ -24,15 +24,16 @@ public class HistogramDataRetriever {
         double minValue = Collections.min(sourceList);
         double maxValue = Collections.max(sourceList);
 
-        double startInterval = NumberGenerator.getScaledValue(minValue,1);
-        double endInterval =  NumberGenerator.getScaledValue(maxValue, 1);
+        double startInterval = NumberGenerator.getMinScaledValue(minValue,1);
+        double endInterval =  NumberGenerator.getMaxScaledValue(maxValue, 1);
 
         double step = (maxValue - minValue) / k;
 
         int tempFrequence = 0;
         for(double start = startInterval; start < endInterval; start+=step) {
+            tempFrequence = 0;
             for (Double number : sourceList) {
-                if (number > startInterval && number < (startInterval + step))
+                if (number > start && number < (start + step))
                     tempFrequence++;
             }
             frequenciesList.add(tempFrequence);
