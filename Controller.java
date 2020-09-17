@@ -8,6 +8,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.math.BigDecimal;
@@ -80,6 +81,53 @@ public class Controller implements Initializable {
     private TextField triangleAField;
     @FXML
     private TextField triangleBField;
+    @FXML
+    private TextField simpsonAField;
+    @FXML
+    private TextField simpsonBField;
+
+
+    @FXML
+    private Label uniformMathExpField;
+    @FXML
+    private Label uniformDispersionField;
+    @FXML
+    private Label uniformSKOField;
+
+    @FXML
+    private Label gaussianMathExpField;
+    @FXML
+    private Label gaussianDispersionField;
+    @FXML
+    private Label gaussianSKOField;
+
+    @FXML
+    private Label exponentialMathExpField;
+    @FXML
+    private Label exponentialDispersionField;
+    @FXML
+    private Label exponentialSKOField;
+
+    @FXML
+    private Label gammaMathExpField;
+    @FXML
+    private Label gammaDispersionField;
+    @FXML
+    private Label gammaSKOField;
+
+    @FXML
+    private Label triangleMathExpField;
+    @FXML
+    private Label triangleDispersionField;
+    @FXML
+    private Label triangleSKOField;
+
+    @FXML
+    private Label simpsonMathExpField;
+    @FXML
+    private Label simpsonDispersionField;
+    @FXML
+    private Label simpsonSKOField;
 
 
     @FXML
@@ -96,6 +144,8 @@ public class Controller implements Initializable {
     private Button triangleStartButton;
     @FXML
     private Button simpsonStartButton;
+
+
 
 
 
@@ -137,6 +187,9 @@ public class Controller implements Initializable {
         double start = Double.parseDouble(uniformStartField.getText());
         double end = Double.parseDouble(uniformEndField.getText());
         Main.numberGenerator.generateUniformDistribution(start, end);
+        uniformMathExpField.setText(String.valueOf(NumberGenerator.mathExpectation));
+        uniformDispersionField.setText(String.valueOf(NumberGenerator.seqDispersion));
+        uniformSKOField.setText(String.valueOf(NumberGenerator.seqDeviation));
         Main.histogramDataRetriever.calculateFrequencies(Main.numberGenerator.getGeneratedNumbers());
         UniformDistributionHistogram.getData().add(getHistogramBarChartSeries());
 
@@ -148,6 +201,9 @@ public class Controller implements Initializable {
         double mathExpectation = Double.parseDouble(gaussianMathExpectationField.getText());
         double stdDeviation = Double.parseDouble(gaussianMeanSquareField.getText());
         Main.numberGenerator.generateGaussianDistribution(mathExpectation, stdDeviation);
+        gaussianMathExpField.setText(String.valueOf(NumberGenerator.mathExpectation));
+        gaussianDispersionField.setText(String.valueOf(NumberGenerator.seqDispersion));
+        gaussianSKOField.setText(String.valueOf(NumberGenerator.seqDeviation));
         Main.histogramDataRetriever.calculateFrequencies(Main.numberGenerator.getGeneratedNumbers());
         GaussianDistributionHistogram.getData().add(getHistogramBarChartSeries());
     }
@@ -157,6 +213,9 @@ public class Controller implements Initializable {
         ExponentialDistributionHistogram.getData().clear();
         double lambda = Double.parseDouble(exponentialLambdaField.getText());
         Main.numberGenerator.generateExponentialDistribution(lambda);
+        exponentialMathExpField.setText(String.valueOf(NumberGenerator.mathExpectation));
+        exponentialDispersionField.setText(String.valueOf(NumberGenerator.seqDispersion));
+        exponentialSKOField.setText(String.valueOf(NumberGenerator.mathExpectation));
         Main.histogramDataRetriever.calculateFrequencies(Main.numberGenerator.getGeneratedNumbers());
         ExponentialDistributionHistogram.getData().add(getHistogramBarChartSeries());
     }
@@ -165,8 +224,11 @@ public class Controller implements Initializable {
     {
         GammaDistributionHistogram.getData().clear();
         double lambda = Double.parseDouble(gammaLambdaField.getText());
-        double tetta = Double.parseDouble(gammaLambdaField.getText());
+        double tetta = Double.parseDouble(gammaTettaField.getText());
         Main.numberGenerator.generateGammaDistribution(lambda, tetta);
+        gammaMathExpField.setText(String.valueOf(tetta / lambda));
+        gammaDispersionField.setText(String.valueOf(tetta / Math.pow(lambda, 2)));
+        gammaSKOField.setText(String.valueOf(NumberGenerator.seqDeviation));
         Main.histogramDataRetriever.calculateFrequencies(Main.numberGenerator.getGeneratedNumbers());
         GammaDistributionHistogram.getData().add(getHistogramBarChartSeries());
     }
@@ -177,6 +239,9 @@ public class Controller implements Initializable {
         double a = Double.parseDouble(triangleAField.getText());
         double b = Double.parseDouble(triangleBField.getText());
         Main.numberGenerator.generateTriangleDistribution(a,b);
+        triangleMathExpField.setText(String.valueOf(NumberGenerator.mathExpectation));
+        triangleDispersionField.setText(String.valueOf(NumberGenerator.seqDispersion));
+        triangleSKOField.setText(String.valueOf(NumberGenerator.seqDeviation));
         Main.histogramDataRetriever.calculateFrequencies(Main.numberGenerator.getGeneratedNumbers());
         TriangleDistributionHistogram.getData().add(getHistogramBarChartSeries());
     }
@@ -184,7 +249,12 @@ public class Controller implements Initializable {
     public void onSimpsonStartButtonClicked()
     {
         SimpsonDistributionHistogram.getData().clear();
-        Main.numberGenerator.generateSimpsonDistribution();
+        double a = Double.parseDouble(simpsonAField.getText());
+        double b = Double.parseDouble(simpsonBField.getText());
+        Main.numberGenerator.generateSimpsonDistribution(a ,b);
+        simpsonMathExpField.setText(String.valueOf(NumberGenerator.mathExpectation));
+        simpsonDispersionField.setText(String.valueOf(NumberGenerator.seqDispersion));
+        simpsonSKOField.setText(String.valueOf(NumberGenerator.seqDeviation));
         Main.histogramDataRetriever.calculateFrequencies(Main.numberGenerator.getGeneratedNumbers());
         SimpsonDistributionHistogram.getData().add(getHistogramBarChartSeries());
     }

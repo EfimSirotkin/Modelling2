@@ -1,5 +1,6 @@
 package sample;
 
+import javax.naming.ldap.Control;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -12,9 +13,9 @@ public class NumberGenerator {
     public static ArrayList<Double> generatedNumbers;
 
 
-    private double mathExpectation;
-    private double seqDispersion;
-    private double seqDeviation;
+    public static double mathExpectation;
+    public static double seqDispersion;
+    public static double seqDeviation;
 
     public NumberGenerator() {
         randomNumbers = new ArrayList<>(n);
@@ -34,6 +35,10 @@ public class NumberGenerator {
             double randomNumber = 0.0 + Math.random()* 1.0;
             generatedNumbers.add(start + (end - start) * randomNumber);
         }
+        calculateAverage();
+        calсulateDispersion();
+        calculateDeviation();
+
 
         System.out.println("Uniform: " + generatedNumbers);
     }
@@ -56,6 +61,11 @@ public class NumberGenerator {
             }
             generatedNumbers.add(i, Math.abs(mathExpectation + meanSquare * Math.sqrt(2) * (sum - 3)));
         }
+
+        calculateAverage();
+        calсulateDispersion();
+        calculateDeviation();
+
         System.out.println("Gaussian: " + generatedNumbers);
     }
 
@@ -65,6 +75,12 @@ public class NumberGenerator {
             double randomNumber = 0.0 + Math.random() * 1.0;
             generatedNumbers.add(i, (-1 / lambda) * Math.log(randomNumber));
         }
+
+        calculateAverage();
+        calсulateDispersion();
+        calculateDeviation();
+
+
     }
 
     public void generateGammaDistribution(double lambda, double tetta) {
@@ -80,6 +96,10 @@ public class NumberGenerator {
             }
             generatedNumbers.add(i, (-1 / lambda) * Math.log(randMultiplication));
         }
+        calculateAverage();
+        calсulateDispersion();
+        calculateDeviation();
+
     }
 
     public void generateTriangleDistribution(double a, double b) {
@@ -89,15 +109,23 @@ public class NumberGenerator {
             double secondNumber = 0.0 + Math.random() * 1.0;
             generatedNumbers.add(i, a + (b - a) * Math.min(firstNumber, secondNumber));
         }
+        calculateAverage();
+        calсulateDispersion();
+        calculateDeviation();
     }
 
-    public void generateSimpsonDistribution() {
+    public void generateSimpsonDistribution(double a, double b) {
         generatedNumbers.clear();
+        double start = a / 2;
+        double end = b / 2;
         for (int i = 0; i < n; ++i) {
-            double firstNumber = 0.0 + Math.random() * 1.0;
-            double secondNumber = 0.0 + Math.random() * 1.0;
+            double firstNumber = start + ((end - start) * (0. + Math.random() * 1.0));
+            double secondNumber = start + ((end - start) * (0 + Math.random() * 1.0));
             generatedNumbers.add(i, firstNumber + secondNumber);
         }
+        calculateAverage();
+        calсulateDispersion();
+        calculateDeviation();
     }
 
     public static ArrayList<Double> getGeneratedNumbers() {
@@ -110,14 +138,14 @@ public class NumberGenerator {
 
     public void calculateAverage() {
         double sum = 0;
-        for (Double number : randomNumbers)
+        for (Double number : generatedNumbers)
             sum += number;
         mathExpectation = getMaxScaledValue(sum / n, 4);
     }
 
     public void calсulateDispersion() {
         double sum = 0;
-        for (Double number : randomNumbers)
+        for (Double number : generatedNumbers)
             sum += Math.pow(number - mathExpectation, 2);
 
         seqDispersion = getMaxScaledValue(sum / n, 4);

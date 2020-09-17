@@ -8,6 +8,8 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
 <HBox fx:controller="sample.Controller"
       xmlns:fx="http://javafx.com/fxml" alignment="center">
     <VBox>
@@ -40,6 +42,41 @@
 
                     </TextField>
                 </HBox>
+
+                <HBox>
+                    <Text text="Матожидание: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="uniformMathExpField">
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="Дисперсия: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="uniformDispersionField">
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="СКО: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="uniformSKOField">
+
+                    </Label>
+                </HBox>
+
+
 
                 <Button fx:id="uniformStartButton" text="Запустить" onAction="#onUniformStartButtonClicked">
 
@@ -86,6 +123,39 @@
                     </TextField>
                 </HBox>
 
+                <HBox>
+                    <Text text="Матожидание: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="gaussianMathExpField" style="">
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="Дисперсия: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="gaussianDispersionField">
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="СКО: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="gaussianSKOField">
+
+                    </Label>
+                </HBox>
+
                 <Button fx:id="gaussianStartButton" text="Запустить" onAction="#onGaussianStartButtonClicked">
 
                 </Button>
@@ -118,6 +188,39 @@
                     <TextField fx:id="exponentialLambdaField">
 
                     </TextField>
+                </HBox>
+
+                <HBox>
+                    <Text text="Матожидание: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="exponentialMathExpField">
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="Дисперсия: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="exponentialDispersionField" >
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="СКО: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="exponentialSKOField">
+
+                    </Label>
                 </HBox>
 
                 <Button fx:id="exponentialStartButton" text="Запустить" onAction="#onExponentialStartButtonClicked">
@@ -171,6 +274,39 @@
                     </TextField>
                 </HBox>
 
+                <HBox>
+                    <Text text="Матожидание: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="gammaMathExpField">
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="Дисперсия: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="gammaDispersionField">
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="СКО: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="gammaSKOField">
+
+                    </Label>
+                </HBox>
+
                 <Button fx:id="gammaStartButton" text="Запустить" onAction="#onGammaStartButtonClicked">
 
                 </Button>
@@ -216,6 +352,39 @@
                     </TextField>
                 </HBox>
 
+                <HBox>
+                    <Text text="Матожидание: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="triangleMathExpField">
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="Дисперсия: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="triangleDispersionField">
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="СКО: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="triangleSKOField">
+
+                    </Label>
+                </HBox>
+
                 <Button fx:id="triangleStartButton" text="Запустить" onAction="#onTriangleStartButtonClicked">
 
                 </Button>
@@ -239,6 +408,61 @@
                         <Font name="Verdana Bold Italic" size="16"></Font>
                     </font>
                 </Text>
+
+                <HBox>
+                    <Text text="а: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <TextField fx:id="simpsonAField">
+
+                    </TextField>
+                </HBox>
+
+                <HBox>
+                    <Text text="b: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <TextField fx:id="simpsonBField">
+
+                    </TextField>
+                </HBox>
+
+                <HBox>
+                    <Text text="Матожидание: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="simpsonMathExpField">
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="Дисперсия: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="simpsonDispersionField">
+
+                    </Label>
+                </HBox>
+
+                <HBox>
+                    <Text text="СКО: ">
+                        <font>
+                            <Font name="Verdana Italic" size="14"></Font>
+                        </font>
+                    </Text>
+                    <Label fx:id="simpsonSKOField">
+
+                    </Label>
+                </HBox>
 
                 <Button fx:id="simpsonStartButton" text="Запустить" onAction="#onSimpsonStartButtonClicked">
 
